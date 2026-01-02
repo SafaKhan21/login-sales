@@ -11,7 +11,7 @@ function initUserHeader() {
 
     // If user opened the system page directly — send back to login
     if (!username) {
-        window.location.href = "../login/index.html";
+        window.location.href = "../index.html";
         return;
     }
 
