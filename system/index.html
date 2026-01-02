@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASE Sales System - Enterprise Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="../system/src/logo.png">
+
+</head>
+
+<script>
+  if (!sessionStorage.getItem("loggedIn")) {
+    window.location.href = "../login/index.html";
+  }
+</script>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo-section">
+                <img src="./src/logo.png" alt="ASE Logo" class="logo-img">
+                <div class="brand">
+                    <h1 class="brand-name" data-en="Sales System" data-ar="نظام المبيعات">Sales System</h1>
+                    <p class="brand-tagline" data-en="Enterprise Sales & Invoicing Platform" data-ar="منصة المبيعات والفواتير للشركات">Enterprise Sales & Invoicing Platform</p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-buttons">
+                <button class="nav-btn active" id="btnDashboard">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="3" width="7" height="7" rx="1"/>
+                        <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    </svg>
+                    <span data-en="Dashboard" data-ar="لوحة التحكم">Dashboard</span>
+                </button>
+                <button class="nav-btn" id="btnUserManagement">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="8.5" cy="7" r="4"/>
+                        <polyline points="17 11 19 13 23 9"/>
+                    </svg>
+                    <span data-en="User Management" data-ar="إدارة المستخدمين">User Management</span>
+                    <span class="badge-new" data-en="New" data-ar="جديد">New</span>
+                </button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="header-actions">
+
+
+                  <div class="header-user">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M5.5 21c1.5-4 11.5-4 13 0"/>
+        </svg>
+        <span id="headerUsername">User</span>
+    </div>
+
+
+                <button class="icon-btn" id="btnTheme" title="Toggle Theme">
+                    <svg class="icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="icon-dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+                <button class="icon-btn" id="btnLanguage" title="Switch Language">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Dashboard View -->
+        <section class="view active" id="viewDashboard">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title" data-en="Analytics Dashboard" data-ar="لوحة التحليلات">Analytics Dashboard</h2>
+                        <p class="page-subtitle" data-en="Monitor your sales performance and business metrics in real-time" data-ar="راقب أداء مبيعاتك ومقاييس الأعمال في الوقت الفعلي">Monitor your sales performance and business metrics in real-time</p>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card blue">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label" data-en="Total Sales" data-ar="إجمالي المبيعات">Total Sales</p>
+                                <h3 class="stat-value">12,458</h3>
+                                <span class="stat-change positive">+12.5%</span>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card cyan">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label" data-en="Total Revenue" data-ar="إجمالي الإيرادات">Total Revenue</p>
+                                <h3 class="stat-value">$700K</h3>
+                                <span class="stat-change positive">+8.2%</span>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="1" x2="12" y2="23"/>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card blue-light">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label" data-en="Active Users" data-ar="المستخدمون النشطون">Active Users</p>
+                                <h3 class="stat-value">245</h3>
+                                <span class="stat-change positive">+5.1%</span>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card purple">
+                        <div class="stat-content">
+                            <div class="stat-info">
+                                <p class="stat-label" data-en="Pending Invoices" data-ar="الفواتير المعلقة">Pending Invoices</p>
+                                <h3 class="stat-value">89</h3>
+                                <span class="stat-change negative">-2.4%</span>
+                            </div>
+                            <div class="stat-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 1 -->
+                <div class="charts-row">
+                    <!-- Sales Trend Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="Sales Trend (Last 6 Months)" data-ar="اتجاه المبيعات (آخر 6 أشهر)">Sales Trend (Last 6 Months)</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="salesTrendChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Revenue by Category Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="Revenue by Category" data-ar="الإيرادات حسب الفئة">Revenue by Category</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="revenueCategoryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 2 - New Interactive Charts -->
+                <div class="charts-row">
+                    <!-- Monthly Comparison Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="Monthly Comparison" data-ar="المقارنة الشهرية">Monthly Comparison</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="monthlyComparisonChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- User Activity Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="User Activity by Hour" data-ar="نشاط المستخدم بالساعة">User Activity by Hour</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="userActivityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row 3 - Additional Analytics -->
+                <div class="charts-row">
+                    <!-- Payment Methods Chart -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="Payment Methods Distribution" data-ar="توزيع طرق الدفع">Payment Methods Distribution</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="paymentMethodsChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Sales Trend -->
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title" data-en="Weekly Sales Trend" data-ar="اتجاه المبيعات الأسبوعية">Weekly Sales Trend</h3>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="weeklySalesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="bottom-row">
+                    <!-- Top Products -->
+                    <div class="data-card">
+                        <h3 class="card-title" data-en="Top Products" data-ar="المنتجات الأكثر مبيعاً">Top Products</h3>
+                        <div class="products-list">
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <span class="product-name">Laptop Dell XPS 15</span>
+                                    <span class="product-category" data-en="Electronics" data-ar="إلكترونيات">Electronics</span>
+                                </div>
+                                <span class="product-value">$45,200</span>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <span class="product-name">iPhone 14 Pro</span>
+                                    <span class="product-category" data-en="Electronics" data-ar="إلكترونيات">Electronics</span>
+                                </div>
+                                <span class="product-value">$38,900</span>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <span class="product-name">Samsung Galaxy S23</span>
+                                    <span class="product-category" data-en="Electronics" data-ar="إلكترونيات">Electronics</span>
+                                </div>
+                                <span class="product-value">$32,450</span>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <span class="product-name">MacBook Air M2</span>
+                                    <span class="product-category" data-en="Electronics" data-ar="إلكترونيات">Electronics</span>
+                                </div>
+                                <span class="product-value">$28,700</span>
+                            </div>
+                            <div class="product-item">
+                                <div class="product-info">
+                                    <span class="product-name">iPad Pro 12.9</span>
+                                    <span class="product-category" data-en="Electronics" data-ar="إلكترونيات">Electronics</span>
+                                </div>
+                                <span class="product-value">$24,300</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="data-card">
+                        <h3 class="card-title" data-en="Recent Activity" data-ar="النشاط الأخير">Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon blue">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                    </svg>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text" data-en="New invoice created #INV-2458" data-ar="تم إنشاء فاتورة جديدة #INV-2458">New invoice created #INV-2458</p>
+                                    <span class="activity-time">2 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon green">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text" data-en="User 'Ahmed' logged in" data-ar="قام المستخدم 'أحمد' بتسجيل الدخول">User 'Ahmed' logged in</p>
+                                    <span class="activity-time">15 minutes ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon orange">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                                    </svg>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text" data-en="Sales report generated" data-ar="تم إنشاء تقرير المبيعات">Sales report generated</p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon purple">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12 6 12 12 16 14"/>
+                                    </svg>
+                                </div>
+                                <div class="activity-content">
+                                    <p class="activity-text" data-en="Payment received #PAY-8745" data-ar="تم استلام الدفعة #PAY-8745">Payment received #PAY-8745</p>
+                                    <span class="activity-time">3 hours ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Management View -->
+        <section class="view" id="viewUserManagement">
+            <div class="container">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h2 class="page-title" data-en="User Management" data-ar="إدارة المستخدمين">User Management</h2>
+                        <p class="page-subtitle" data-en="Configure user settings, permissions, and access controls" data-ar="تكوين إعدادات المستخدم والأذونات وعناصر التحكم في الوصول">Configure user settings, permissions, and access controls</p>
+                    </div>
+                    <button class="btn-primary" id="btnSave">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17 21 17 13 7 13 7 21"/>
+                            <polyline points="7 3 7 8 15 8"/>
+                        </svg>
+                        <span data-en="Save Changes" data-ar="حفظ التغييرات">Save Changes</span>
+                    </button>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="tabAccount" data-en="Account & Identity" data-ar="الحساب والهوية">Account & Identity</button>
+                    <button class="tab" data-tab="tabSales" data-en="Sales & Pricing" data-ar="المبيعات والتسعير">Sales & Pricing</button>
+                    <button class="tab" data-tab="tabInvoice" data-en="Invoices, Tax & Credit" data-ar="الفواتير والضرائب">Invoices, Tax & Credit</button>
+                    <button class="tab" data-tab="tabBranch" data-en="Companies & Warehouses" data-ar="الشركات والمستودعات">Companies & Warehouses</button>
+                    <button class="tab" data-tab="tabAdvanced" data-en="Advanced System Settings" data-ar="الإعدادات المتقدمة">Advanced System Settings</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Account & Identity Tab -->
+                    <div class="tab-panel active" id="tabAccount">
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Account & Identity" data-ar="الحساب والهوية">Account & Identity</h3>
+                                    <p class="form-description" data-en="User credentials and identification" data-ar="بيانات الاعتماد والتعريف">User credentials and identification</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Operator Code" data-ar="كود المشغل">Operator Code</label>
+                                        <div class="input-group">
+                                            <input type="text" id="operatorCode" value="OP-2024-1547" readonly>
+                                            <button class="btn-secondary" id="btnGenerateCode" data-en="Generate" data-ar="توليد">Generate</button>
+                                        </div>
+                                        <span class="hint" data-en="Auto-generated unique identifier" data-ar="معرف فريد ��تم إنشاؤه تلقائياً">Auto-generated unique identifier</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Username" data-ar="اسم المستخدم">Username</label>
+                                        <input type="text" placeholder="Enter username" data-placeholder-en="Enter username" data-placeholder-ar="أدخل اسم المستخدم">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Password" data-ar="كلمة المرور">Password</label>
+                                        <input type="password" placeholder="••••••••">
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Confirm Password" data-ar="تأكيد كلمة المرور">Confirm Password</label>
+                                        <input type="password" placeholder="••••••••">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Arabic Name" data-ar="الاسم بالعربية">Arabic Name</label>
+                                        <input type="text" placeholder="الاسم الكامل">
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="English Name" data-ar="الاسم بالإنجليزية">English Name</label>
+                                        <input type="text" placeholder="Full Name">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Job Role" data-ar="الوظيفة">Job Role</label>
+                                        <select id="jobRole">
+                                            <option value="" data-en="Select role..." data-ar="اختر الوظيفة...">Select role...</option>
+                                            <option value="sales" data-en="Sales Representative" data-ar="مندوب مبيعات">Sales Representative</option>
+                                            <option value="accountant" data-en="Accountant" data-ar="محاسب">Accountant</option>
+                                            <option value="cashier" data-en="Cashier" data-ar="أمين صندوق">Cashier</option>
+                                            <option value="manager" data-en="Manager" data-ar="مدير">Manager</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Access Level" data-ar="مستوى الوصول">Access Level</label>
+                                        <select id="accessLevel">
+                                            <option value="user" data-en="User" data-ar="مستخدم">User</option>
+                                            <option value="supervisor" data-en="Supervisor" data-ar="مشرف">Supervisor</option>
+                                            <option value="cashier_supervisor" data-en="Cashier Supervisor" data-ar="مشرف الصراف">Cashier Supervisor</option>
+                                            <option value="super_admin" data-en="Super Admin" data-ar="مسؤول عام">Super Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Role-based Permissions -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon green">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Role-based Permissions" data-ar="الأذونات المبنية على الدور">Role-based Permissions</h3>
+                                    <p class="form-description" data-en="Default permissions (editable)" data-ar="الأذونات الافتراضية (قابلة للتحرير)">Default permissions (editable)</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="permissions-grid">
+                                    <div class="permission-row">
+                                        <span data-en="View Sales Reports" data-ar="عرض تقارير المبيعات">View Sales Reports</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Create Invoices" data-ar="إنشاء الفواتير">Create Invoices</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Manage Inventory" data-ar="إدارة المخزون">Manage Inventory</span>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Access Accounting" data-ar="الوصول إلى المحاسبة">Access Accounting</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Manage Users" data-ar="إدارة المستخدمين">Manage Users</span>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Export Data" data-ar="تصدير البيانات">Export Data</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sales & Pricing Tab -->
+                    <div class="tab-panel" id="tabSales">
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="1" x2="12" y2="23"/>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Sales & Pricing" data-ar="المبيعات والتسعير">Sales & Pricing</h3>
+                                    <p class="form-description" data-en="Configure pricing and discount settings" data-ar="تكوين إعدادات التسعير والخصم">Configure pricing and discount settings</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Price Level 1" data-ar="مستوى السعر 1">Price Level 1</label>
+                                        <select>
+                                            <option data-en="Retail Price" data-ar="سعر التجزئة">Retail Price</option>
+                                            <option data-en="Wholesale Price" data-ar="سعر الجملة">Wholesale Price</option>
+                                            <option data-en="Special Price" data-ar="سعر خاص">Special Price</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Price Level 2" data-ar="مستوى السعر 2">Price Level 2</label>
+                                        <select>
+                                            <option data-en="Retail Price" data-ar="سعر التجزئة">Retail Price</option>
+                                            <option data-en="Wholesale Price" data-ar="سعر الجملة">Wholesale Price</option>
+                                            <option data-en="Special Price" data-ar="سعر خاص">Special Price</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Price Level 3" data-ar="مستوى السعر 3">Price Level 3</label>
+                                        <select>
+                                            <option data-en="Retail Price" data-ar="سعر التجزئة">Retail Price</option>
+                                            <option data-en="Wholesale Price" data-ar="سعر الجملة">Wholesale Price</option>
+                                            <option data-en="Special Price" data-ar="سعر خاص">Special Price</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Purchase Price Access" data-ar="الوصول لسعر الشراء">Purchase Price Access</label>
+                                        <select>
+                                            <option data-en="No Access" data-ar="بدون وصول">No Access</option>
+                                            <option data-en="View Only" data-ar="عرض فقط">View Only</option>
+                                            <option data-en="Full Access" data-ar="وصول كامل">Full Access</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Transfer Price Access" data-ar="الوصول لسعر التحويل">Transfer Price Access</label>
+                                        <select>
+                                            <option data-en="No Access" data-ar="بدون وصول">No Access</option>
+                                            <option data-en="View Only" data-ar="عرض فقط">View Only</option>
+                                            <option data-en="Full Access" data-ar="وصول كامل">Full Access</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Maximum Discount (%)" data-ar="الحد الأقصى للخصم (%)">Maximum Discount (%)</label>
+                                        <input type="number" min="0" max="100" value="15">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Discount Permissions -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon orange">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="9" cy="9" r="2"/>
+                                        <circle cx="15" cy="15" r="2"/>
+                                        <path d="M3 3l18 18"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Discount Permissions" data-ar="أذونات الخصم">Discount Permissions</h3>
+                                    <p class="form-description" data-en="Control discount capabilities" data-ar="التحكم في قدرات الخصم">Control discount capabilities</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="permissions-grid">
+                                    <div class="permission-row">
+                                        <span data-en="Can Apply Discounts" data-ar="يمكنه تطبيق الخصومات">Can Apply Discounts</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="View Supplier Prices" data-ar="عرض أسعار الموردين">View Supplier Prices</span>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoices, Tax & Credit Tab -->
+                    <div class="tab-panel" id="tabInvoice">
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon green">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Tax Configuration" data-ar="تكوين الضريبة">Tax Configuration</h3>
+                                    <p class="form-description" data-en="VAT and tax handling settings" data-ar="إعدادات ضريبة القيمة المضافة">VAT and tax handling settings</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>
+                                            <span data-en="VAT Percentage (%)" data-ar="نسبة ضريبة القيمة المضافة (%)">VAT Percentage (%)</span>
+                                            <span class="badge-auto" data-en="Auto" data-ar="تلقائي">Auto</span>
+                                        </label>
+                                        <input type="number" value="15" readonly>
+                                        <span class="hint" data-en="Inherited from company settings" data-ar="موروث من إعدادات الشركة">Inherited from company settings</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Tax Handling" data-ar="معالجة الضريبة">Tax Handling</label>
+                                        <select>
+                                            <option data-en="Inclusive" data-ar="شامل">Inclusive</option>
+                                            <option data-en="Exclusive" data-ar="حصري">Exclusive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Invoice Options -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 6 2 18 2 18 9"/>
+                                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                                        <rect x="6" y="14" width="12" height="8"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Invoice Options" data-ar="خيارات الفاتورة">Invoice Options</h3>
+                                    <p class="form-description" data-en="Printing and processing controls" data-ar="ضوابط الطباعة والمعالجة">Printing and processing controls</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="permissions-grid">
+                                    <div class="permission-row">
+                                        <span data-en="Enable Invoice Printing" data-ar="تمكين طباعة الفواتير">Enable Invoice Printing</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Allow Invoice Reprint" data-ar="السماح بإعادة طباعة الفاتورة">Allow Invoice Reprint</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Require Invoice for Sales" data-ar="يتطلب فاتورة للمبيعات">Require Invoice for Sales</span>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="Auto-print After Save" data-ar="طباعة تلقائية بعد الحفظ">Auto-print After Save</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Credit Controls -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon purple">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                                        <line x1="1" y1="10" x2="23" y2="10"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Credit Controls" data-ar="ضوابط الائتمان">Credit Controls</h3>
+                                    <p class="form-description" data-en="Customer credit management" data-ar="إدارة ائتمان العملاء">Customer credit management</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="permissions-grid">
+                                    <div class="permission-row">
+                                        <div>
+                                            <span data-en="Override Credit Limit" data-ar="تجاوز حد الائتمان">Override Credit Limit</span>
+                                            <p class="perm-hint" data-en="Allow exceeding customer limits" data-ar="السماح بتجاوز حدود العميل">Allow exceeding customer limits</p>
+                                        </div>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <div>
+                                            <span data-en="Override Credit Period" data-ar="تجاوز فترة الائتمان">Override Credit Period</span>
+                                            <p class="perm-hint" data-en="Modify payment terms" data-ar="تعديل شروط الدفع">Modify payment terms</p>
+                                        </div>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Companies, Branches & Warehouses Tab -->
+                    <div class="tab-panel" id="tabBranch">
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Company Access" data-ar="الوصول للشركة">Company Access</h3>
+                                    <p class="form-description" data-en="Multi-company assignment" data-ar="تعيين متعدد الشركات">Multi-company assignment</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group full-width">
+                                        <label data-en="Company Selection (Multi-select)" data-ar="اختيار الشركة (متعدد)">Company Selection (Multi-select)</label>
+                                        <input type="text" class="search-input" placeholder="Search companies..." data-placeholder-en="Search companies..." data-placeholder-ar="البحث عن الشركات...">
+                                        <div class="company-list">
+
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" checked>
+                                                <span data-en="ABC Trading Company" data-ar="شركة ABC للتجارة">ABC Trading Company</span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox">
+                                                <span data-en="XYZ Retail Group" data-ar="مجموعة XYZ للتجزئة">XYZ Retail Group</span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox" checked>
+                                                <span data-en="Global Sales Corp" data-ar="شركة المبيعات العالمية">Global Sales Corp</span>
+                                            </label>
+                                            <label class="checkbox-item">
+                                                <input type="checkbox">
+                                                <span data-en="Premium Wholesale Ltd" data-ar="شركة الجملة المتميزة">Premium Wholesale Ltd</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Accounting Branch" data-ar="الفرع المحاسبي">Accounting Branch</label>
+                                        <select>
+                                            <option data-en="Main Branch" data-ar="الفرع الرئيسي">Main Branch</option>
+                                            <option data-en="North Branch" data-ar="الفرع الشمالي">North Branch</option>
+                                            <option data-en="South Branch" data-ar="الفرع الجنوبي">South Branch</option>
+                                            <option data-en="East Branch" data-ar="الفرع الشرقي">East Branch</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Warehouse Access" data-ar="الوصول للمستودع">Warehouse Access</label>
+                                      <div class="warehouse-section">
+  <label class="section-label" data-en="Warehouse Access" data-ar="الوصول للمستودعات">
+    Warehouse Access
+  </label>
+
+  <div class="warehouse-grid">
+    <label class="warehouse-item">
+      <input type="checkbox" name="warehouses[]" checked>
+      <span data-en="Main Warehouse" data-ar="المستودع الرئيسي">
+        Main Warehouse
+      </span>
+    </label>
+
+    <label class="warehouse-item">
+      <input type="checkbox" name="warehouses[]">
+      <span data-en="Warehouse A" data-ar="المستودع أ">
+        Warehouse A
+      </span>
+    </label>
+
+    <label class="warehouse-item">
+      <input type="checkbox" name="warehouses[]" checked>
+      <span data-en="Warehouse B" data-ar="المستودع ب">
+        Warehouse B
+      </span>
+    </label>
+
+    <label class="warehouse-item">
+      <input type="checkbox" name="warehouses[]">
+      <span data-en="Warehouse C" data-ar="المستودع ج">
+        Warehouse C
+      </span>
+    </label>
+  </div>
+
+</div>
+
+
+                                     <span class="hint" data-en="Hold Ctrl to select multiple" data-ar="اضغط Ctrl لتحديد عدة">Hold Ctrl to select multiple</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stock Visibility -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon green">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Stock Visibility" data-ar="رؤية المخزون">Stock Visibility</h3>
+                                    <p class="form-description" data-en="Inventory access control" data-ar="التحكم في الوصول للمخزون">Inventory access control</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="permissions-grid">
+                                    <div class="permission-row">
+                                        <span data-en="Show Stock Balance" data-ar="إظهار رصيد المخزون">Show Stock Balance</span>
+                                        <label class="toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="permission-row">
+                                        <span data-en="View Cost Prices" data-ar="عرض أسعار التكلفة">View Cost Prices</span>
+                                        <label class="toggle">
+                                            <input type="checkbox">
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced System Settings Tab -->
+                   <div class="tab-panel modern-access" id="tabAdvanced">
+
+                        <div class="admin-notice">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                            <div>
+                                <h4 data-en="Visible only to supervisors and administrators" data-ar="مرئية فقط للمشرفين والمسؤولين">Visible only to supervisors and administrators</h4>
+                                <p data-en="These settings require elevated permissions and may affect system-wide operations." data-ar="تتطلب هذه الإعدادات أذونات مرتفعة وقد تؤثر على العمليات على مستوى النظام.">These settings require elevated permissions and may affect system-wide operations.</p>
+                            </div>
+                        </div>
+
+                        <!-- Financial Accounts -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                                        <line x1="1" y1="10" x2="23" y2="10"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Financial Accounts" data-ar="الحسابات المالية">Financial Accounts</h3>
+                                    <p class="form-description" data-en="Default accounting configuration" data-ar="تكوين المحاسبة الافتراضي">Default accounting configuration</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Bank Account" data-ar="الحساب البنكي">Bank Account</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Cash Account" data-ar="حساب النقد">Cash Account</label>
+                                        <input type="text" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Integration & Export Paths -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon cyan">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                                        <polyline points="13 2 13 9 20 9"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Integration & Export Paths" data-ar="مسارات التكامل والتصدير">Integration & Export Paths</h3>
+                                    <p class="form-description" data-en="Configure directories used for report and Excel exports" data-ar="تكوين الأدلة المستخدمة لتصدير التقارير وExcel">Configure directories used for report and Excel exports</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Report Export Path" data-ar="مسار تصدير التقارير">Report Export Path</label>
+                                        <div class="input-group">
+                                            <input type="text" id="reportPath" readonly placeholder="No folder selected" data-placeholder-en="No folder selected" data-placeholder-ar="لم يتم تحديد مجلد">
+                                            <button class="btn-secondary" onclick="document.getElementById('reportPathInput').click()">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                                </svg>
+                                                <span data-en="Choose Folder" data-ar="اختر مجلد">Choose Folder</span>
+                                            </button>
+                                            <input type="file" id="reportPathInput" webkitdirectory directory style="display:none;">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label data-en="Excel Integration Path" data-ar="مسار تكامل Excel">Excel Integration Path</label>
+                                        <div class="input-group">
+                                            <input type="text" id="excelPath" readonly placeholder="No folder selected" data-placeholder-en="No folder selected" data-placeholder-ar="لم يتم تحديد مجلد">
+                                            <button class="btn-secondary" onclick="document.getElementById('excelPathInput').click()">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                                                </svg>
+                                                <span data-en="Choose Folder" data-ar="اختر مجلد">Choose Folder</span>
+                                            </button>
+                                            <input type="file" id="excelPathInput" webkitdirectory directory style="display:none;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Note -->
+                        <div class="info-notice">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                            <div class="info-notice-content">
+                                <p class="info-notice-title" data-en="Note:" data-ar="ملاحظة:"><strong>Note:</strong></p>
+                                <p class="info-notice-text" data-en="Ensure these directories exist and have appropriate read/write permissions. Invalid paths may cause export failures." data-ar="تأكد من وجود هذه الأدلة ولديها أذونات القراءة/الكتابة المناسبة. قد تتسبب المسارات غير الصالحة في فشل التصدير.">Ensure these directories exist and have appropriate read/write permissions. Invalid paths may cause export failures.</p>
+                            </div>
+                        </div>
+
+                        <!-- Device & Printer Settings -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 6 2 18 2 18 9"/>
+                                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                                        <rect x="6" y="14" width="12" height="8"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Device & Printer Settings" data-ar="إعدادات الجهاز والطابعة">Device & Printer Settings</h3>
+                                    <p class="form-description" data-en="Printer configuration" data-ar="تكوين الطابعة">Printer configuration</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Printer Type" data-ar="نوع الطابعة">Printer Type</label>
+                                        <select>
+                                            <option value="thermal" data-en="Thermal" data-ar="حراري">Thermal</option>
+                                            <option data-en="Network Printer" data-ar="طابعة الشبكة">Network Printer</option>
+                                            <option data-en="Default Printer" data-ar="الطابعة الافتراضية">Default Printer</option>
+                                            <option data-en="PDF Export" data-ar="تصدير PDF">PDF Export</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Email Settings -->
+                        <div class="form-card">
+                            <div class="form-header">
+                                <div class="form-icon blue">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="form-title" data-en="Email Settings" data-ar="إعدادات البريد الإلكتروني">Email Settings</h3>
+                                    <p class="form-description" data-en="SMTP configuration" data-ar="تكوين SMTP">SMTP configuration</p>
+                                </div>
+                            </div>
+                            <div class="form-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label data-en="Email Server" data-ar="خادم البريد الإلكتروني">Email Server</label>
+                                        <input type="text" placeholder="smtp.server.com" value="smtp.server.com">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    
+   
+
+</body>
+</html>
